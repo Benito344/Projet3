@@ -1,10 +1,13 @@
 package com.behague.benjamin.projet3;
 
+import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private float y1, y2;
     static final int MIN_DISTANCE = 150;
     private int mNumColor = 3, mColor;
+    private String mComm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,29 @@ public class MainActivity extends AppCompatActivity {
         al.add(7, R.drawable.smiley_normal);
         al.add(8, R.drawable.smiley_happy);
         al.add(9, R.drawable.smiley_super_happy);
+
+        mAddComm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final EditText mInputComm = new EditText(MainActivity.this);
+                final AlertDialog.Builder mDialogAddComm = new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("Commentary")
+                        .setView(mInputComm)
+                        .setPositiveButton("Add", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which){
+                                mComm = mInputComm.getText().toString();
+                            }
+                        });
+                mDialogAddComm.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which){
+                        dialog.cancel();
+                    }
+                });
+                mDialogAddComm.show();
+            }
+        });
     }
 
     @Override
