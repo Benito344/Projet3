@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.behague.benjamin.projet3.MainActivity">
+    android:background="@color/light_sage"
+    android:id="@+id/screen"
+    tools:context="com.behague.benjamin.projet3.MainActivity"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
-</android.support.constraint.ConstraintLayout>
+        >
+        <ImageView
+            android:id="@+id/smiley"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/smiley_happy"
+            android:layout_centerInParent="true"
+            />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+            <ImageButton
+                android:id="@+id/add_comm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_note_add_black"
+                android:background="@drawable/ic_note_add_black"
+                android:layout_gravity="bottom|left"
+                android:layout_margin="10dp"/>
+            <ImageButton
+                android:id="@+id/history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_history_black"
+                android:background="@drawable/ic_history_black"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="10dp"/>
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
