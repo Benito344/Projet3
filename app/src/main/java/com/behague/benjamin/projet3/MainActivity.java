@@ -1,6 +1,7 @@
 package com.behague.benjamin.projet3;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -36,14 +37,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageButton mAddComm, mHistory;
+        ImageButton mAddComm, mHistoric;
 
         mScreen = findViewById(R.id.screen);
 
         mSmiley = (ImageView) findViewById(R.id.smiley);
 
         mAddComm = (ImageButton) findViewById(R.id.add_comm);
-        mHistory = (ImageButton) findViewById(R.id.history);
+        mHistoric = (ImageButton) findViewById(R.id.history);
 
         mToday = Calendar.getInstance(Locale.getDefault());
 
@@ -80,6 +81,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 mDialogAddComm.show();
+            }
+        });
+        mHistoric.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent mIntent = new Intent(MainActivity.this, List_Historic.class);
+                startActivity(mIntent);
             }
         });
     }
