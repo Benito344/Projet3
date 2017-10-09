@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.behague.benjamin.projet3.model.DataManager;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -123,26 +125,12 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-    private void SaveData (int mNumeColor, String mComment){
 
-        mSaveMood.edit().putInt(mWeekDay, mNumeColor).apply();
-        mSaveMood.edit().putString(mWeekDay+1, mComment).apply();
-
-    }
-
-    private void LoadData(){
-
-        mNumColor = mSaveMood.getInt(mWeekDay, 3);
-        mComm = mSaveMood.getString(mWeekDay+1, null);
-
-        mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
-        mSmiley.setImageResource(al.get(mNumColor+5));
-    }
     @Override
     protected void onPause(){
         super.onPause();
 
-        SaveData(mNumColor, mComm);
+        DataManager.SaveData(this, mWeekDay, mNumColor, mComm);
     }
     @Override
     protected void onResume(){
@@ -154,6 +142,9 @@ public class MainActivity extends AppCompatActivity {
         dayFormat = new SimpleDateFormat("EEEE", Locale.US);
         mWeekDay = dayFormat.format(mToday.getTime());
 
-        LoadData();
+        mNumColor = DataManager.LoadMood(this, mWeekDay);
+
+        mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
+        mSmiley.setImageResource(al.get(mNumColor+5));
     }
 }
