@@ -9,17 +9,18 @@ import android.content.SharedPreferences;
 
 public class DataManager {
     private static SharedPreferences mSaveMood;
+    private static final String PREF_KEY_MOODS = "PREF_KEY_MOODS", PREF_KEY_COMMENTS = "PREF_KEY_COMMENTS";
 
-    public static void SaveData(Context context, String mWeekDay , int mNumColor, String mComment){
+    public static void SaveData(Context context, int mDayOfWeek , int mNumColor, String mComment){
         mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
-        mSaveMood.edit().putInt(mWeekDay, mNumColor).apply();
-        mSaveMood.edit().putString(mWeekDay+1, mComment).apply();
+        mSaveMood.edit().putInt(PREF_KEY_MOODS + mDayOfWeek, mNumColor).apply();
+        mSaveMood.edit().putString(PREF_KEY_COMMENTS + mDayOfWeek, mComment).apply();
     }
 
-    public static int LoadMood(Context context, String mWeekDay){
+    public static int LoadMood(Context context, int mDayOfWeek){
         int mNumColor;
         mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
-        mNumColor = mSaveMood.getInt(mWeekDay, 3);
+        mNumColor = mSaveMood.getInt(PREF_KEY_MOODS + mDayOfWeek, 3);
         return mNumColor ;
     }
 }

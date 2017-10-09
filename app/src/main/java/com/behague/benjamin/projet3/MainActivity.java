@@ -28,11 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     private float y1, y2;
     static final int MIN_DISTANCE = 150;
-    private int mNumColor = 3;
+    private int mNumColor = 3, mDayOfWeek;
     private String mComm;
-    private Calendar mToday;
+    private Calendar mCalendar;
     private SharedPreferences mSaveMood;
-    private String mWeekDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         mAddComm = (ImageButton) findViewById(R.id.add_comm);
         mHistoric = (ImageButton) findViewById(R.id.history);
 
-        mToday = Calendar.getInstance(Locale.getDefault());
+        mCalendar = Calendar.getInstance(Locale.getDefault());
+        mDayOfWeek = mCalendar.get(Calendar.DAY_OF_WEEK);
 
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                         if (mNumColor < 4) {
                             mNumColor++;
                             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
-                            mSmiley.setImageResource(al.get(mNumColor));
+                            mSmiley.setImageResource(al.get(mNumColor + 5));
                         }
                     } else {
                         if (mNumColor > 0) {
@@ -130,19 +130,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
 
-        DataManager.SaveData(this, mWeekDay, mNumColor, mComm);
+        DataManager.SaveData(this, mDayOfWeek, mNumColor, mComm);
     }
     @Override
     protected void onResume(){
         super.onResume();
 
-        SimpleDateFormat dayFormat;
-
-        //Use the day format for "EEEE" will return the full weekday name
-        dayFormat = new SimpleDateFormat("EEEE", Locale.US);
-        mWeekDay = dayFormat.format(mToday.getTime());
-
-        mNumColor = DataManager.LoadMood(this, mWeekDay);
+        mNumColor = DataManager.LoadMood(this, mDayOfWeek);
 
         mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
         mSmiley.setImageResource(al.get(mNumColor+5));
