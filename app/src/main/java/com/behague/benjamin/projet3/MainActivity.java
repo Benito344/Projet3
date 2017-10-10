@@ -18,7 +18,10 @@ import com.behague.benjamin.projet3.model.DataManager;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private String mComm;
     private Calendar mCalendar;
     private SharedPreferences mSaveMood;
+    private Timer mTimer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,16 @@ public class MainActivity extends AppCompatActivity {
         al.add(7, R.drawable.smiley_normal);
         al.add(8, R.drawable.smiley_happy);
         al.add(9, R.drawable.smiley_super_happy);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 00);
+        calendar.set(Calendar.MINUTE, 00);
+        calendar.set(Calendar.SECOND, 0);
+
+        Date alarmTime = calendar.getTime();
+
+        mTimer = new Timer();
+        mTimer.schedule(new AlarmTask(), alarmTime);
 
         mAddComm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,11 +141,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public class AlarmTask extends TimerTask {
+        /**
+         * Called on a background thread by Timer
+         */
+        public void run() {
+            DataManager.SaveData(MainActivity.this, mDayOfWeek, mNumColor, mComm);
+            System.out.println("Test Schedule");
+            mTimer.cancel();
+        }
+    }
+
     @Override
     protected void onPause(){
         super.onPause();
 
-        DataManager.SaveData(this, mDayOfWeek, mNumColor, mComm);
+        DataManager.SaveDataTemporary(this, mDayOfWeek, mNumColor, mComm);
     }
     @Override
     protected void onResume(){
