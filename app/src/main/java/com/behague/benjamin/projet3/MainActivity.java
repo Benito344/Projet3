@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mHistoric = (ImageButton) findViewById(R.id.history);
 
         mCalendar = Calendar.getInstance(Locale.getDefault());
-        mDayOfWeek = mCalendar.get(Calendar.DAY_OF_WEEK);
+        mDayOfWeek = mCalendar.get(Calendar.DAY_OF_YEAR);
 
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 
@@ -67,16 +67,6 @@ public class MainActivity extends AppCompatActivity {
         al.add(7, R.drawable.smiley_normal);
         al.add(8, R.drawable.smiley_happy);
         al.add(9, R.drawable.smiley_super_happy);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 00);
-        calendar.set(Calendar.MINUTE, 00);
-        calendar.set(Calendar.SECOND, 0);
-
-        Date alarmTime = calendar.getTime();
-
-        mTimer = new Timer();
-        mTimer.schedule(new AlarmTask(), alarmTime);
 
         mAddComm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,17 +130,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-
-    public class AlarmTask extends TimerTask {
-        /**
-         * Called on a background thread by Timer
-         */
-        public void run() {
-            DataManager.SaveData(MainActivity.this, mDayOfWeek, mNumColor, mComm);
-            System.out.println("Test Schedule");
-            mTimer.cancel();
-        }
-    }
 
     @Override
     protected void onPause(){
