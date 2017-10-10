@@ -12,10 +12,10 @@ public class DataManager {
     private static SharedPreferences mSaveMood;
     private static final String PREF_KEY_MOODS = "PREF_KEY_MOODS", PREF_KEY_COMMENTS = "PREF_KEY_COMMENTS";
 
-    public static void SaveDataTemporary(Context context, int mDayOfWeek , int mNumColor, String mComment){
+    public static void SaveDataTemporary(Context context, int mNumColor, String mComment){
         mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
-        mSaveMood.edit().putInt(PREF_KEY_MOODS + mDayOfWeek, mNumColor).apply();
-        mSaveMood.edit().putString(PREF_KEY_COMMENTS + mDayOfWeek, mComment).apply();
+        mSaveMood.edit().putInt(PREF_KEY_MOODS, mNumColor).apply();
+        mSaveMood.edit().putString(PREF_KEY_COMMENTS, mComment).apply();
     }
 
     public static int LoadMood(Context context, int mDayOfWeek){

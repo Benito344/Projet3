@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause(){
         super.onPause();
 
-        DataManager.SaveDataTemporary(this, mDayOfWeek, mNumColor, mComm);
+        DataManager.SaveDataTemporary(this, mNumColor, mComm);
     }
     @Override
     protected void onResume(){
