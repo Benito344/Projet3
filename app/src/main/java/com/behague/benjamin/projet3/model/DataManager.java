@@ -18,10 +18,10 @@ public class DataManager {
         mSaveMood.edit().putString(PREF_KEY_COMMENTS, mComment).apply();
     }
 
-    public static int LoadMood(Context context, int mDayOfWeek){
+    public static int LoadMood(Context context){
         int mNumColor;
         mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
-        mNumColor = mSaveMood.getInt(PREF_KEY_MOODS + mDayOfWeek, 3);
+        mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 3);
         return mNumColor ;
     }
 

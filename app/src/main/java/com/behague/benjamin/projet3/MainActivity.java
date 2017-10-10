@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
 
-        mNumColor = DataManager.LoadMood(this, mDayOfWeek);
+        mNumColor = DataManager.LoadMood(this);
 
         mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
         mSmiley.setImageResource(al.get(mNumColor+5));
