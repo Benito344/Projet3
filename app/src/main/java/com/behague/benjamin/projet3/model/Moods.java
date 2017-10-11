@@ -10,11 +10,6 @@ public class Moods implements Serializable{
     private int mMood, mId;
     private String mCommentary;
 
-    public Moods() {
-        this.mMood = 3;
-        this.mCommentary = null;
-    }
-
     public Moods(int id ,int mood, String commentary){
         this.mId = id;
         this.mMood = mood;

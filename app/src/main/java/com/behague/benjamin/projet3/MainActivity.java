@@ -14,16 +14,15 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.behague.benjamin.projet3.model.DataManager;
+import com.behague.benjamin.projet3.model.MoodList;
+import com.behague.benjamin.projet3.model.Moods;
 
-import java.text.SimpleDateFormat;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Serializable {
 
     private ArrayList<Integer> al = new ArrayList();
     private View mScreen;
@@ -31,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     private float y1, y2;
     static final int MIN_DISTANCE = 150;
-    private int mNumColor = 3, mDayOfWeek;
+    private int mNumColor = 3, mDayOfYear;
     private String mComm;
     private Calendar mCalendar;
     private SharedPreferences mSaveMood;
-    private Timer mTimer;
-
+    private static final String PREF_KEY_MOODS = "PREF_KEY_MOODS", PREF_KEY_COMMENTS = "PREF_KEY_COMMENTS",
+            PREF_KEY_DAY = "PREF_KEY_DAY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mHistoric = (ImageButton) findViewById(R.id.history);
 
         mCalendar = Calendar.getInstance(Locale.getDefault());
-        mDayOfWeek = mCalendar.get(Calendar.DAY_OF_YEAR);
+
 
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 
@@ -130,18 +129,30 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(event);
     }
 
-
     @Override
     protected void onPause(){
         super.onPause();
 
-        DataManager.SaveDataTemporary(this, mNumColor, mComm);
+        DataManager.SaveDataTemporary(this, mDayOfYear, mNumColor, mComm);
     }
     @Override
     protected void onResume(){
         super.onResume();
 
-        mNumColor = DataManager.LoadMood(this);
+        mDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
+
+        if(mDayOfYear == mSaveMood.getInt(PREF_KEY_DAY, 999)){
+            mNumColor = DataManager.LoadMoodTemporary(this);}
+        else{
+            mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 999);
+            mComm = mSaveMood.getString(PREF_KEY_COMMENTS, null);
+
+            Moods mMood = new Moods(mDayOfYear-1, mNumColor, mComm );
+            DataManager.loadMoods(this);
+            MoodList.addMood(mMood);
+
+            mNumColor = DataManager.savedMood(this, mDayOfYear);
+        }
 
         mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
         mSmiley.setImageResource(al.get(mNumColor+5));
