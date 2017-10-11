@@ -39,7 +39,7 @@ public class DataManager implements Serializable{
         return mNumColor ;
     }
 
-    public static int savedMood(Context context, int mDayOfYear) {
+    public static int savedMood(Context context) {
         try( FileOutputStream fos = context.openFileOutput("Moods.ser", Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
 
@@ -47,12 +47,6 @@ public class DataManager implements Serializable{
             System.out.println("Saved File");
 
         }catch (IOException e){ System.out.println("Don't found");}
-
-        mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
-
-        mSaveMood.edit().putInt(PREF_KEY_MOODS, 3).apply();
-        mSaveMood.edit().putString(PREF_KEY_COMMENTS , null).apply();
-        mSaveMood.edit().putInt(PREF_KEY_DAY, mDayOfYear).apply();
 
         return 3;
     }

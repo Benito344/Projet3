@@ -3,6 +3,7 @@ package com.behague.benjamin.projet3;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.provider.ContactsContract;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -140,18 +141,39 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onResume();
 
         mDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
+        int mDiff = mDayOfYear - mSaveMood.getInt(PREF_KEY_DAY, 999);
+        mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 999);
+        mComm = mSaveMood.getString(PREF_KEY_COMMENTS, null);
 
-        if(mDayOfYear == mSaveMood.getInt(PREF_KEY_DAY, 999)){
+        if(mDiff == 0){
             mNumColor = DataManager.LoadMoodTemporary(this);}
+
+        else if(mDiff > 1){
+            Moods mMood = new Moods(mSaveMood.getInt(PREF_KEY_DAY, 999), mNumColor, mComm );
+            DataManager.loadMoods(this);
+
+            MoodList.addMood(mMood);
+            mNumColor = DataManager.savedMood(this);
+
+            for(int i = (mSaveMood.getInt(PREF_KEY_DAY, 999)+1); i <= (mDayOfYear-1); i++){
+                Moods mMoodBase = new Moods(i, 3, null );
+                DataManager.loadMoods(this);
+                MoodList.addMood(mMoodBase);
+                mNumColor = DataManager.savedMood(this);
+            }
+            mSaveMood.edit().putInt(PREF_KEY_MOODS, 3).apply();
+            mSaveMood.edit().putString(PREF_KEY_COMMENTS , null).apply();
+            mSaveMood.edit().putInt(PREF_KEY_DAY, mDayOfYear).apply();
+        }
+
         else{
-            mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 999);
-            mComm = mSaveMood.getString(PREF_KEY_COMMENTS, null);
 
             Moods mMood = new Moods(mDayOfYear-1, mNumColor, mComm );
             DataManager.loadMoods(this);
+
             MoodList.addMood(mMood);
 
-            mNumColor = DataManager.savedMood(this, mDayOfYear);
+            mNumColor = DataManager.savedMood(this);
         }
 
         mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
