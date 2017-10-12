@@ -4,6 +4,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -51,31 +52,38 @@ public class List_Historic extends AppCompatActivity {
             mHistoricMoods = (FrameLayout) findViewById(flID);
             mHistoricMoods.getLayoutParams().height = size;
             switch (tMoods[i]){
-                case 0:
+                case 1:
+                    mHistoricMoods.setVisibility(View.VISIBLE);
                     ratio = ((float) (width))*0.2;
                     mHistoricMoods.getLayoutParams().width = (int) ratio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(0)));
                     break;
-                case 1:
+                case 2:
+                    mHistoricMoods.setVisibility(View.VISIBLE);
                     ratio = ((float) (width))*0.4;
                     mHistoricMoods.getLayoutParams().width = (int) ratio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(1)));
                     break;
-                case 2:
+                case 3:
+                    mHistoricMoods.setVisibility(View.VISIBLE);
                     ratio = ((float) (width))*0.6;
                     mHistoricMoods.getLayoutParams().width = (int) ratio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(2)));
                     break;
-                case 3:
+                case 4:
+                    mHistoricMoods.setVisibility(View.VISIBLE);
                     ratio = ((float) (width))*0.8;
                     mHistoricMoods.getLayoutParams().width = (int) ratio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(3)));
                     break;
-                case 4:
+                case 5:
+                    mHistoricMoods.setVisibility(View.VISIBLE);
                     ratio = ((float) (width))* 1;
                     mHistoricMoods.getLayoutParams().width = (int) ratio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(4)));
                     break;
+                default:
+                    mHistoricMoods.setVisibility(View.INVISIBLE);
             }
         }
     }

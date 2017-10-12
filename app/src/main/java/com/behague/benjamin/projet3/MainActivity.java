@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private float y1, y2;
     static final int MIN_DISTANCE = 150;
-    private int mNumColor = 3, mDayOfYear;
+    private int mNumColor = 4, mDayOfYear;
     private String mComm;
     private Calendar mCalendar;
     private SharedPreferences mSaveMood;
     private static final String PREF_KEY_MOODS = "PREF_KEY_MOODS", PREF_KEY_COMMENTS = "PREF_KEY_COMMENTS",
-            PREF_KEY_DAY = "PREF_KEY_DAY";
+            PREF_KEY_DAY = "PREF_KEY_DAY", PREF_KEY_FIRSTLAUNCH = "PREF_KEY_FIRSTLAUNCH";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +57,18 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 
-        al.add(0, R.color.faded_red);
-        al.add(1, R.color.warm_grey);
-        al.add(2, R.color.cornflower_blue_65);
-        al.add(3, R.color.light_sage);
-        al.add(4, R.color.banana_yellow);
-        al.add(5, R.drawable.smiley_sad);
-        al.add(6, R.drawable.smiley_disappointed);
-        al.add(7, R.drawable.smiley_normal);
-        al.add(8, R.drawable.smiley_happy);
-        al.add(9, R.drawable.smiley_super_happy);
+        al.add(0, null);
+        al.add(1, R.color.faded_red);
+        al.add(2, R.color.warm_grey);
+        al.add(3, R.color.cornflower_blue_65);
+        al.add(4, R.color.light_sage);
+        al.add(5, R.color.banana_yellow);
+        al.add(6, R.drawable.smiley_sad);
+        al.add(7, R.drawable.smiley_disappointed);
+        al.add(8, R.drawable.smiley_normal);
+        al.add(9, R.drawable.smiley_happy);
+        al.add(10, R.drawable.smiley_super_happy);
+
 
         mAddComm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,13 +112,13 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 float deltaX = y2 - y1;
                 if (Math.abs(deltaX) > MIN_DISTANCE) {
                     if (y2 > y1) {
-                        if (mNumColor < 4) {
+                        if (mNumColor < 5) {
                             mNumColor++;
                             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
                             mSmiley.setImageResource(al.get(mNumColor + 5));
                         }
                     } else {
-                        if (mNumColor > 0) {
+                        if (mNumColor > 1) {
                             mNumColor--;
                             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
                             mSmiley.setImageResource(al.get(mNumColor + 5));
@@ -142,41 +144,48 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         mDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
         int mDiff = mDayOfYear - mSaveMood.getInt(PREF_KEY_DAY, 999);
-        mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 999);
-        mComm = mSaveMood.getString(PREF_KEY_COMMENTS, null);
 
-        if(mDiff == 0){
-            mNumColor = DataManager.LoadMoodTemporary(this);}
 
-        else if(mDiff > 1){
-            Moods mMood = new Moods(mSaveMood.getInt(PREF_KEY_DAY, 999), mNumColor, mComm );
-            DataManager.loadMoods(this);
+        int mFirstLaunch = mSaveMood.getInt(PREF_KEY_FIRSTLAUNCH, 1);
 
-            MoodList.addMood(mMood);
-            mNumColor = DataManager.savedMood(this);
+        if (mFirstLaunch != 1) {
 
-            for(int i = (mSaveMood.getInt(PREF_KEY_DAY, 999)+1); i <= (mDayOfYear-1); i++){
-                Moods mMoodBase = new Moods(i, 3, null );
+            mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 999);
+            mComm = mSaveMood.getString(PREF_KEY_COMMENTS, null);
+
+            if (mDiff == 0) {
+                mNumColor = DataManager.LoadMoodTemporary(this);
+            } else if (mDiff > 1) {
+                Moods mMood = new Moods(mSaveMood.getInt(PREF_KEY_DAY, 999), mNumColor, mComm);
                 DataManager.loadMoods(this);
-                MoodList.addMood(mMoodBase);
+
+                MoodList.addMood(mMood);
+                mNumColor = DataManager.savedMood(this);
+
+                for (int i = (mSaveMood.getInt(PREF_KEY_DAY, 999) + 1); i <= (mDayOfYear - 1); i++) {
+                    Moods mMoodBase = new Moods(i, 4, null);
+                    DataManager.loadMoods(this);
+                    MoodList.addMood(mMoodBase);
+                    DataManager.savedMood(this);
+                }
+                mSaveMood.edit().putInt(PREF_KEY_MOODS, mNumColor).apply();
+                mSaveMood.edit().putString(PREF_KEY_COMMENTS, null).apply();
+                mSaveMood.edit().putInt(PREF_KEY_DAY, mDayOfYear).apply();
+            } else {
+
+                Moods mMood = new Moods(mDayOfYear - 1, mNumColor, mComm);
+                DataManager.loadMoods(this);
+
+                MoodList.addMood(mMood);
+
                 mNumColor = DataManager.savedMood(this);
             }
-            mSaveMood.edit().putInt(PREF_KEY_MOODS, 3).apply();
-            mSaveMood.edit().putString(PREF_KEY_COMMENTS , null).apply();
-            mSaveMood.edit().putInt(PREF_KEY_DAY, mDayOfYear).apply();
+
+            mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
+            mSmiley.setImageResource(al.get(mNumColor + 5));
         }
-
-        else{
-
-            Moods mMood = new Moods(mDayOfYear-1, mNumColor, mComm );
-            DataManager.loadMoods(this);
-
-            MoodList.addMood(mMood);
-
-            mNumColor = DataManager.savedMood(this);
+        else {
+            mSaveMood.edit().putInt(PREF_KEY_FIRSTLAUNCH, 0).apply();
         }
-
-        mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
-        mSmiley.setImageResource(al.get(mNumColor+5));
     }
 }

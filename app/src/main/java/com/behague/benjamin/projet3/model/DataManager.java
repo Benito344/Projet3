@@ -35,7 +35,7 @@ public class DataManager implements Serializable{
     public static int LoadMoodTemporary(Context context){
         int mNumColor;
         mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
-        mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 3);
+        mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 4);
         return mNumColor ;
     }
 
@@ -48,7 +48,7 @@ public class DataManager implements Serializable{
 
         }catch (IOException e){ System.out.println("Don't found");}
 
-        return 3;
+        return 4;
     }
         public static void loadMoods(Context context) {
 
