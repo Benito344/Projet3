@@ -18,6 +18,13 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:layout_gravity="top|left"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_note_add_black"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/activity_list_ImgBp0"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -29,6 +36,13 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:layout_gravity="top|left"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_note_add_black"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/activity_list_ImgBp1"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -40,6 +54,13 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:layout_gravity="top|left"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_note_add_black"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/activity_list_ImgBp2"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -51,6 +72,13 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:layout_gravity="top|left"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_note_add_black"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/activity_list_ImgBp3"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -62,6 +90,13 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:layout_gravity="top|left"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_note_add_black"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/activity_list_ImgBp4"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -73,6 +108,13 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:layout_gravity="top|left"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_note_add_black"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/activity_list_ImgBp5"/>
     </FrameLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -84,6 +126,13 @@
             android:layout_height="wrap_content"
             android:text="test"
             android:layout_gravity="top|left"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_note_add_black"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:id="@+id/activity_list_ImgBp6"/>
     </FrameLayout>
 
 </LinearLayout>
