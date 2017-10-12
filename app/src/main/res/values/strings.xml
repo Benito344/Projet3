@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Projet3</string>
+    <string name="one_week"><b>Il y a une semaine</b></string>
+    <string name="six_days"><b>Il y a six jours</b></string>
+    <string name="five_days"><b>Il y a cinq jours</b></string>
+    <string name="four_days"><b>Il y a quatre jours</b></string>
+    <string name="three_days"><b>Il y a trois jours</b></string>
+    <string name="two_days"><b>Il y a deux jours</b></string>
+    <string name="yesterday"><b>Hier</b></string>
 </resources>
