@@ -26,19 +26,45 @@ public class MoodList implements Serializable {
         return str;
     }
     public static int[] getMoodsHistoric() {
-        int tMood [] = new int [7];
+        int sizeOfMoodList = mMoodListData.size();
         int i = 0;
+        if (sizeOfMoodList >= 7) {
+            int tMood [] = new int [7];
+
+            List<Moods> tail = mMoodListData.subList(Math.max(mMoodListData.size() - 7, 0), mMoodListData.size());
+
+            for(Moods t : tail) {
+                if(t.getMood() != 0){
+                    tMood[i] = t.getMood(); }
+                i++;
+            }
+            return tMood;
+        }
+        else{
+            int tMood [] = new int [sizeOfMoodList];
+
+            for(Moods t : mMoodListData) {
+                if(t.getMood() != 0){
+                    tMood[i] = t.getMood(); }
+                i++;
+            }
+            return tMood;
+        }
+    }
+
+    public static String[] getMoodsComms(){
+        String tComms[] = {null, null, null, null, null, null, null};
         List<Moods> tail = mMoodListData.subList(Math.max(mMoodListData.size() - 7, 0), mMoodListData.size());
+        int i = 0;
         for(Moods t : tail) {
 
             if(t.getMood() != 0){
-            tMood[i] = t.getMood(); }
+                tComms[i] = t.getCommentary(); }
 
             i++;
         }
-        return tMood;
+        return tComms;
     }
-
     /******** TO DEVELOP ******/
     /*public static String getMoods(){
         String str ="";

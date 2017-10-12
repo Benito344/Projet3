@@ -6,21 +6,26 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.behague.benjamin.projet3.model.DataManager;
 import com.behague.benjamin.projet3.model.MoodList;
 
 import java.util.ArrayList;
 
-public class List_Historic extends AppCompatActivity {
+public class List_Historic extends AppCompatActivity implements View.OnClickListener {
 
     private FrameLayout mHistoricMoods;
     private ArrayList<Integer> al = new ArrayList();
+    private ImageView mImgBtn;
+    private String tComms [] = {null, null, null, null, null, null, null};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list__historic);
 
         al.add(0, R.color.faded_red);
         al.add(1, R.color.warm_grey);
@@ -28,12 +33,23 @@ public class List_Historic extends AppCompatActivity {
         al.add(3, R.color.light_sage);
         al.add(4, R.color.banana_yellow);
 
-        setContentView(R.layout.activity_list__historic);
+
         DataManager.loadMoods(this);
+        int j = 0;
+        for (String c : MoodList.getMoodsComms()){
+            tComms[j] = c;
+            j++;
+        }
+
         int tMoods [] =  MoodList.getMoodsHistoric();
         String str = "";
         for ( int t : tMoods){
               str += t +"\n";
+        }
+        System.out.println(str);
+        str = "";
+        for (String t : tComms){
+            str += t + "\n";
         }
 
         System.out.println(str + "\n\n");
@@ -47,9 +63,11 @@ public class List_Historic extends AppCompatActivity {
         int width = (metrics.widthPixels);
         double ratio ;
 
-        for (int i = 0 ; i <= 6 ; i++ ){
+        for (int i = 0 ; i < tMoods.length ; i++ ){
             int flID = getResources().getIdentifier("activity_list_FrameLayout"+i, "id", getPackageName());
+            int ibID = getResources().getIdentifier("activity_list_Img"+i, "id", getPackageName());
             mHistoricMoods = (FrameLayout) findViewById(flID);
+            mImgBtn = (ImageView) findViewById(ibID);
             mHistoricMoods.getLayoutParams().height = size;
             switch (tMoods[i]){
                 case 1:
@@ -85,6 +103,21 @@ public class List_Historic extends AppCompatActivity {
                 default:
                     mHistoricMoods.setVisibility(View.INVISIBLE);
             }
+            if (tComms[i] == null){
+                mImgBtn.setVisibility(View.INVISIBLE);
+            }
+            mHistoricMoods.setOnClickListener(this);
+            mHistoricMoods.setTag(i);
+        }
+    }
+
+    @Override
+    public void onClick(View v){
+
+        int mCommTouch = (int) v.getTag();
+
+        if(tComms[mCommTouch] != null ){
+            Toast.makeText(this, tComms[mCommTouch], Toast.LENGTH_SHORT).show();
         }
     }
 }
