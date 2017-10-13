@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     static final int MIN_DISTANCE = 150;
     private int mNumColor = 4, mDayOfYear;
     private String mComm;
-    private Calendar mCalendar;
     private SharedPreferences mSaveMood;
     private static final String PREF_KEY_MOODS = "PREF_KEY_MOODS", PREF_KEY_COMMENTS = "PREF_KEY_COMMENTS",
             PREF_KEY_DAY = "PREF_KEY_DAY", PREF_KEY_FIRSTLAUNCH = "PREF_KEY_FIRSTLAUNCH";
@@ -138,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onResume(){
         super.onResume();
+        Calendar mCalendar;
 
         mCalendar = Calendar.getInstance(Locale.getDefault());
         mDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
