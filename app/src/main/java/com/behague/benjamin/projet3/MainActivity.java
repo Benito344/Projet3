@@ -95,6 +95,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 startActivity(mIntent);
             }
         });
+
+        mSmiley.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent mIntent = new Intent(MainActivity.this, Pie_Chart.class);
+                startActivity(mIntent);
+                return false;
+            }
+        });
     }
 
     @Override

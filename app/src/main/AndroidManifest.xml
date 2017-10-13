@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".List_Historic">
         </activity>
+        <activity android:name=".Pie_Chart">
+        </activity>
     </application>
 
 </manifest>
