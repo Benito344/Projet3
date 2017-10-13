@@ -36,27 +36,29 @@ public class Pie_Chart extends AppCompatActivity {
 
         mPieChart.setRotationEnabled(true);
 
+        int mListLength = MoodList.getLengthMoodList();
+
         for(Map.Entry<Integer, Integer> e : mStatsMoods.entrySet()){
             switch (e.getKey()){
                 case 1 :
                     colors.add(ContextCompat.getColor(this,R.color.faded_red));
-                    entries.add(new PieEntry((e.getValue()*100)/ MoodList.getLengthMoodList()));
+                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
                     break;
                 case 2 :
                     colors.add(ContextCompat.getColor(this,R.color.warm_grey));
-                    entries.add(new PieEntry((e.getValue()*100)/ MoodList.getLengthMoodList()));
+                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
                     break;
                 case 3 :
                     colors.add(ContextCompat.getColor(this,R.color.cornflower_blue_65));
-                    entries.add(new PieEntry((e.getValue()*100)/ MoodList.getLengthMoodList()));
+                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
                     break;
                 case 4 :
                     colors.add(ContextCompat.getColor(this,R.color.light_sage));
-                    entries.add(new PieEntry((e.getValue()*100)/ MoodList.getLengthMoodList()));
+                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
                     break;
                 case 5 :
                     colors.add(ContextCompat.getColor(this,R.color.banana_yellow));
-                    entries.add(new PieEntry((e.getValue()*100)/ MoodList.getLengthMoodList()));
+                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
                     break;
             }
         }
