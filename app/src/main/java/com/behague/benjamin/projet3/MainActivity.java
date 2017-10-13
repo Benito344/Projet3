@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*** Declare all composents ***/
         ImageButton mAddComm, mHistoric;
 
         mScreen = findViewById(R.id.screen);
@@ -50,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         mAddComm = (ImageButton) findViewById(R.id.add_comm);
         mHistoric = (ImageButton) findViewById(R.id.history);
 
-
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 
+        /*** Add Ressources to the ArrayList ***/
         al.add(0, null);
         al.add(1, R.color.faded_red);
         al.add(2, R.color.warm_grey);
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         al.add(9, R.drawable.smiley_happy);
         al.add(10, R.drawable.smiley_super_happy);
 
-
+        /*** Add listener on ImageButton mAddComm for open pop up with EditBox for input commentary ***/
         mAddComm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 mDialogAddComm.show();
             }
         });
+
+        /*** Add listener on ImageButton mHistoric for open List_Hitoric activity ***/
         mHistoric.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         });
 
+        /*** Add listener on ImageView mSmiley for open Pie_Chart activity (Only with long touch) ***/
         mSmiley.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -106,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         });
     }
 
+    /*** This method is for detected swipe up and down, when the user touch the screen
+     *   this method is call and get the point on Y when user touch and release screen
+     *   with some calcul we can detected an up or down swipe and switch Smiley and colors Background ***/
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -137,12 +144,19 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         return super.onTouchEvent(event);
     }
 
+    /*** This method is call when an other activity come in front or the user destroy app, when it is true
+     *   we saved temporary the mood ans commentary in DataManager ***/
     @Override
     protected void onPause(){
         super.onPause();
         mComm  = mSaveMood.getString(PREF_KEY_COMMENTS,null);
         DataManager.SaveDataTemporary(this, mDayOfYear, mNumColor, mComm);
     }
+
+    /*** This method is call when the user start the application or just come back on it.
+     *   We checked the day of the year for know how long the user have not open the application
+     *   , if it upper at the last time, we saved finally the moods with DataManager,
+     *   else we loaded the temporary mood ***/
     @Override
     protected void onResume(){
         super.onResume();
