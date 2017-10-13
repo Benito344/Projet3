@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         mAddComm = (ImageButton) findViewById(R.id.add_comm);
         mHistoric = (ImageButton) findViewById(R.id.history);
 
-        mCalendar = Calendar.getInstance(Locale.getDefault());
-
 
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 
@@ -134,13 +132,14 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onPause(){
         super.onPause();
-
+        mComm  = mSaveMood.getString(PREF_KEY_COMMENTS,null);
         DataManager.SaveDataTemporary(this, mDayOfYear, mNumColor, mComm);
     }
     @Override
     protected void onResume(){
         super.onResume();
 
+        mCalendar = Calendar.getInstance(Locale.getDefault());
         mDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
         int mDiff = mDayOfYear - mSaveMood.getInt(PREF_KEY_DAY, 999);
 
@@ -178,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 MoodList.addMood(mMood);
 
                 mNumColor = DataManager.savedMood(this);
+                mSaveMood.edit().putString(PREF_KEY_COMMENTS, null).apply();
             }
 
             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
