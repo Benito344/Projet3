@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/light_sage"
     android:id="@+id/screen"
     tools:context="com.behague.benjamin.projet3.MainActivity"
     android:orientation="vertical"
     android:gravity="center">
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
         <ImageView
+            android:contentDescription="@string/description_smiley"
             android:id="@+id/smiley"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,23 +23,23 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
             <ImageButton
+                android:contentDescription="@string/descrition_bp_add_comm"
                 android:id="@+id/add_comm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_note_add_black"
                 android:background="@drawable/ic_note_add_black"
-                android:layout_gravity="bottom|left"
+                android:layout_gravity="bottom|start"
                 android:layout_margin="10dp"/>
             <ImageButton
+                android:contentDescription="@string/description_bp_historic"
                 android:id="@+id/history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_history_black"
                 android:background="@drawable/ic_history_black"
-                android:layout_gravity="bottom|right"
+                android:layout_gravity="bottom|end"
                 android:layout_margin="10dp"/>
         </FrameLayout>
 
     </RelativeLayout>
-
-</LinearLayout>

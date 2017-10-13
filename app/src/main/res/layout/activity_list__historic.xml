@@ -17,16 +17,17 @@
             android:id="@+id/activity_list_TV1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:textColor="#000000"
-            android:layout_gravity="top|left"/>
+            android:layout_gravity="top|start"/>
         <ImageView
+            android:contentDescription="@string/description_commentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_note_add_black"
             android:src="@drawable/ic_note_add_black"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
             android:id="@+id/activity_list_Img0"/>
     </FrameLayout>
     <FrameLayout
@@ -39,16 +40,17 @@
             android:id="@+id/activity_list_TV2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:textColor="#000000"
-            android:layout_gravity="top|left"/>
+            android:layout_gravity="top|start"/>
         <ImageView
+            android:contentDescription="@string/description_commentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_note_add_black"
             android:src="@drawable/ic_note_add_black"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
             android:id="@+id/activity_list_Img1"/>
     </FrameLayout>
     <FrameLayout
@@ -61,16 +63,17 @@
             android:id="@+id/activity_list_TV3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:textColor="#000000"
-            android:layout_gravity="top|left"/>
+            android:layout_gravity="top|start"/>
         <ImageView
+            android:contentDescription="@string/description_commentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_note_add_black"
             android:src="@drawable/ic_note_add_black"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
             android:id="@+id/activity_list_Img2"/>
     </FrameLayout>
     <FrameLayout
@@ -83,16 +86,17 @@
             android:id="@+id/activity_list_TV4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:textColor="#000000"
-            android:layout_gravity="top|left"/>
+            android:layout_gravity="top|start"/>
         <ImageView
+            android:contentDescription="@string/description_commentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_note_add_black"
             android:src="@drawable/ic_note_add_black"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
             android:id="@+id/activity_list_Img3"/>
     </FrameLayout>
     <FrameLayout
@@ -105,16 +109,17 @@
             android:id="@+id/activity_list_TV5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:textColor="#000000"
-            android:layout_gravity="top|left"/>
+            android:layout_gravity="top|start"/>
         <ImageView
+            android:contentDescription="@string/description_commentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_note_add_black"
             android:src="@drawable/ic_note_add_black"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
             android:id="@+id/activity_list_Img4"/>
     </FrameLayout>
     <FrameLayout
@@ -127,16 +132,17 @@
             android:id="@+id/activity_list_TV6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:textColor="#000000"
-            android:layout_gravity="top|left"/>
+            android:layout_gravity="top|start"/>
         <ImageView
+            android:contentDescription="@string/description_commentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_note_add_black"
             android:src="@drawable/ic_note_add_black"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
             android:id="@+id/activity_list_Img5"/>
     </FrameLayout>
     <FrameLayout
@@ -149,16 +155,17 @@
             android:id="@+id/activity_list_TV7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="top|left"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_gravity="top|start"
             android:textColor="#000000"/>
         <ImageView
+            android:contentDescription="@string/description_commentary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_note_add_black"
             android:src="@drawable/ic_note_add_black"
-            android:layout_gravity="center_vertical|right"
-            android:layout_marginRight="10dp"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="10dp"
             android:id="@+id/activity_list_Img6"/>
     </FrameLayout>
 

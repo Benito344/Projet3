@@ -7,4 +7,8 @@
     <string name="three_days"><b>Il y a trois jours</b></string>
     <string name="two_days"><b>Il y a deux jours</b></string>
     <string name="yesterday"><b>Hier</b></string>
+    <string name="description_smiley">Smiley</string>
+    <string name="descrition_bp_add_comm">Ajouter un commentaire</string>
+    <string name="description_bp_historic">Voir l\'historique</string>
+    <string name="description_commentary">Commentaire présent</string>
 </resources>
