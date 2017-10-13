@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.behague.benjamin.projet3.model.DataManager;
@@ -20,6 +21,7 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
     private ArrayList<Integer> al = new ArrayList();
     private ImageView mImgBtn;
     private String tComms [] = {null, null, null, null, null, null, null};
+    private TextView mTv1, mTv2, mTv3, mTv4, mTv5, mTv6, mTv7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,14 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
         al.add(2, R.color.cornflower_blue_65);
         al.add(3, R.color.light_sage);
         al.add(4, R.color.banana_yellow);
+
+        mTv1 = (TextView) findViewById(R.id.activity_list_TV1);
+        mTv2 = (TextView) findViewById(R.id.activity_list_TV2);
+        mTv3 = (TextView) findViewById(R.id.activity_list_TV3);
+        mTv4 = (TextView) findViewById(R.id.activity_list_TV4);
+        mTv5 = (TextView) findViewById(R.id.activity_list_TV5);
+        mTv6 = (TextView) findViewById(R.id.activity_list_TV6);
+        mTv7 = (TextView) findViewById(R.id.activity_list_TV7);
 
 
         DataManager.loadMoods(this);
@@ -53,7 +63,6 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
 
         System.out.println(str + "\n\n");
 
-        setContentView(R.layout.activity_list__historic);
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
@@ -107,6 +116,52 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
             }
             mHistoricMoods.setOnClickListener(this);
             mHistoricMoods.setTag(i);
+        }
+        switch(tMoods.length){
+            case 1 :
+                mTv1.setText(R.string.yesterday);
+                break;
+            case 2 :
+                mTv1.setText(R.string.two_days);
+                mTv2.setText(R.string.yesterday);
+                break;
+            case 3 :
+                mTv1.setText(R.string.three_days);
+                mTv2.setText(R.string.two_days);
+                mTv3.setText(R.string.yesterday);
+                break;
+            case 4 :
+                mTv1.setText(R.string.four_days);
+                mTv2.setText(R.string.three_days);
+                mTv3.setText(R.string.two_days);
+                mTv4.setText(R.string.yesterday);
+                break;
+            case 5 :
+                mTv1.setText(R.string.five_days);
+                mTv2.setText(R.string.four_days);
+                mTv3.setText(R.string.three_days);
+                mTv4.setText(R.string.two_days);
+                mTv5.setText(R.string.yesterday);
+                break;
+            case 6 :
+                mTv1.setText(R.string.six_days);
+                mTv2.setText(R.string.five_days);
+                mTv3.setText(R.string.four_days);
+                mTv4.setText(R.string.three_days);
+                mTv5.setText(R.string.two_days);
+                mTv6.setText(R.string.yesterday);
+                break;
+            case 7 :
+                mTv1.setText(R.string.one_week);
+                mTv2.setText(R.string.six_days);
+                mTv3.setText(R.string.five_days);
+                mTv4.setText(R.string.four_days);
+                mTv5.setText(R.string.three_days);
+                mTv6.setText(R.string.two_days);
+                mTv7.setText(R.string.yesterday);
+                break;
+            default:
+                break;
         }
     }
 

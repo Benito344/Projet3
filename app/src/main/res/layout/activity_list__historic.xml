@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,9 +14,9 @@
         android:background="@color/banana_yellow"
         android:id="@+id/activity_list_FrameLayout0">
         <TextView
+            android:id="@+id/activity_list_TV1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
             android:layout_gravity="top|left"/>
@@ -37,9 +36,9 @@
         android:background="@color/light_sage"
         android:id="@+id/activity_list_FrameLayout1">
         <TextView
+            android:id="@+id/activity_list_TV2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
             android:layout_gravity="top|left"/>
@@ -59,9 +58,9 @@
         android:background="@color/faded_red"
         android:id="@+id/activity_list_FrameLayout2">
         <TextView
+            android:id="@+id/activity_list_TV3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
             android:layout_gravity="top|left"/>
@@ -81,9 +80,9 @@
         android:background="@color/warm_grey"
         android:id="@+id/activity_list_FrameLayout3">
         <TextView
+            android:id="@+id/activity_list_TV4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
             android:layout_gravity="top|left"/>
@@ -103,9 +102,9 @@
         android:background="@color/light_sage"
         android:id="@+id/activity_list_FrameLayout4">
         <TextView
+            android:id="@+id/activity_list_TV5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
             android:layout_gravity="top|left"/>
@@ -125,9 +124,9 @@
         android:background="@color/banana_yellow"
         android:id="@+id/activity_list_FrameLayout5">
         <TextView
+            android:id="@+id/activity_list_TV6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"
             android:layout_gravity="top|left"/>
@@ -147,9 +146,9 @@
         android:background="@color/light_sage"
         android:id="@+id/activity_list_FrameLayout6">
         <TextView
+            android:id="@+id/activity_list_TV7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
             android:layout_gravity="top|left"
             android:layout_marginLeft="5dp"
             android:textColor="#000000"/>
