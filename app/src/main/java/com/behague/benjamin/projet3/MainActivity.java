@@ -3,7 +3,6 @@ package com.behague.benjamin.projet3;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.provider.ContactsContract;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -25,11 +24,11 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
 
-    private ArrayList<Integer> al = new ArrayList();
+    private ArrayList<Integer> al = new ArrayList<>();
     private View mScreen;
     private ImageView mSmiley;
 
-    private float y1, y2;
+    private float y1;
     static final int MIN_DISTANCE = 150;
     private int mNumColor = 4, mDayOfYear;
     private String mComm;
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 y1 = event.getY();
                 break;
             case MotionEvent.ACTION_UP:
-                y2 = event.getY();
+                float y2 = event.getY();
                 float deltaX = y2 - y1;
                 if (Math.abs(deltaX) > MIN_DISTANCE) {
                     if (y2 > y1) {
