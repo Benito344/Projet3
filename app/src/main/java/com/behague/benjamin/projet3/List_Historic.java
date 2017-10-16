@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class List_Historic extends AppCompatActivity implements View.OnClickListener {
 
-    private FrameLayout mHistoricMoods;
-    private ArrayList<Integer> al = new ArrayList();
-    private ImageView mImgBtn;
+
+    private ArrayList<Integer> al = new ArrayList<>();
+
     private String tComms [] = {null, null, null, null, null, null, null};
     private TextView mTv1, mTv2, mTv3, mTv4, mTv5, mTv6, mTv7;
 
@@ -51,26 +51,22 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
         }
 
         int tMoods [] =  MoodList.getMoodsHistoric();
-        String str = "";
-        for ( int t : tMoods){
-              str += t +"\n";
-        }
-        System.out.println(str);
-        str = "";
-        for (String t : tComms){
-            str += t + "\n";
-        }
-
-        System.out.println(str + "\n\n");
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        int statusbarheight = (int) Math.ceil(25* getApplicationContext().getResources().getDisplayMetrics().density);
-        int size = (metrics.heightPixels-statusbarheight)/7;
-        int width = (metrics.widthPixels);
-        double ratio ;
+        int mStatusBarHeight = (int) Math.ceil(25* getApplicationContext().getResources().getDisplayMetrics().density);
+        int mSize = (metrics.heightPixels-mStatusBarHeight)/7;
+        int mWidth = (metrics.widthPixels);
 
+        InitMoodsStyle(mWidth , mSize, tMoods);
+        InitWeek(tMoods);
+    }
+
+    public void InitMoodsStyle(int width, int size, int [] tMoods){
+        FrameLayout mHistoricMoods;
+        ImageView mImgBtn;
+        double mRatio;
         for (int i = 0 ; i < tMoods.length ; i++ ){
             int flID = getResources().getIdentifier("activity_list_FrameLayout"+i, "id", getPackageName());
             int ibID = getResources().getIdentifier("activity_list_Img"+i, "id", getPackageName());
@@ -80,32 +76,31 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
             switch (tMoods[i]){
                 case 1:
                     mHistoricMoods.setVisibility(View.VISIBLE);
-                    ratio = ((float) (width))*0.2;
-                    mHistoricMoods.getLayoutParams().width = (int) ratio;
+                    mRatio = ((float) (width))*0.2;
+                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(0)));
                     break;
                 case 2:
                     mHistoricMoods.setVisibility(View.VISIBLE);
-                    ratio = ((float) (width))*0.4;
-                    mHistoricMoods.getLayoutParams().width = (int) ratio;
+                    mRatio = ((float) (width))*0.4;
+                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(1)));
                     break;
                 case 3:
                     mHistoricMoods.setVisibility(View.VISIBLE);
-                    ratio = ((float) (width))*0.6;
-                    mHistoricMoods.getLayoutParams().width = (int) ratio;
+                    mRatio = ((float) (width))*0.6;
+                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(2)));
                     break;
                 case 4:
                     mHistoricMoods.setVisibility(View.VISIBLE);
-                    ratio = ((float) (width))*0.8;
-                    mHistoricMoods.getLayoutParams().width = (int) ratio;
+                    mRatio = ((float) (width))*0.8;
+                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(3)));
                     break;
                 case 5:
                     mHistoricMoods.setVisibility(View.VISIBLE);
-                    ratio = ((float) (width))* 1;
-                    mHistoricMoods.getLayoutParams().width = (int) ratio;
+                    mHistoricMoods.getLayoutParams().width = width;
                     mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(4)));
                     break;
                 default:
@@ -117,6 +112,9 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
             mHistoricMoods.setOnClickListener(this);
             mHistoricMoods.setTag(i);
         }
+    }
+
+    public void InitWeek(int [] tMoods){
         switch(tMoods.length){
             case 1 :
                 mTv1.setText(R.string.yesterday);
