@@ -17,9 +17,7 @@ import java.util.ArrayList;
 
 public class List_Historic extends AppCompatActivity implements View.OnClickListener {
 
-
     private ArrayList<Integer> al = new ArrayList<>();
-
     private String tComms [] = {null, null, null, null, null, null, null};
     private TextView mTv1, mTv2, mTv3, mTv4, mTv5, mTv6, mTv7;
 
@@ -27,13 +25,14 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list__historic);
-
+         /*** Add ressources to Arraylist ***/
         al.add(0, R.color.faded_red);
         al.add(1, R.color.warm_grey);
         al.add(2, R.color.cornflower_blue_65);
         al.add(3, R.color.light_sage);
         al.add(4, R.color.banana_yellow);
 
+        /*** Declare TextView components ***/
         mTv1 = (TextView) findViewById(R.id.activity_list_TV1);
         mTv2 = (TextView) findViewById(R.id.activity_list_TV2);
         mTv3 = (TextView) findViewById(R.id.activity_list_TV3);
@@ -42,24 +41,39 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
         mTv6 = (TextView) findViewById(R.id.activity_list_TV6);
         mTv7 = (TextView) findViewById(R.id.activity_list_TV7);
 
-
+        /*** Load all moods with the DataManager ***/
         DataManager.loadMoods(this);
+
+        /*** Add commentarys to array ***/
         int j = 0;
         for (String c : MoodList.getMoodsComms()){
             tComms[j] = c;
             j++;
         }
 
+        /*** Init a array of Moods***/
         int tMoods [] =  MoodList.getMoodsHistoric();
 
+        /*** Here it's for get the height and the width of the screen.
+         *   For the status bar height we used Math.ceil, it return the closest upper rounding.
+         *   25 is the height for a MDPI screen, so for retrieve the value of an XXHDPI or LDPI or other,
+         *   just multiply it by the density. And after this, get the total height of the screen, minus
+         *   the status bar***/
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         int mStatusBarHeight = (int) Math.ceil(25* getApplicationContext().getResources().getDisplayMetrics().density);
+        /*** mSize is divided by 7 because we had 7 days to display***/
         int mSize = (metrics.heightPixels-mStatusBarHeight)/7;
         int mWidth = (metrics.widthPixels);
 
+        /*** This function is called for custom each Framelayout represent each day.
+         *   We can custom the colors, the width, the height and visible or not ***/
         InitMoodsStyle(mWidth , mSize, tMoods);
+
+        /*** This function is called for add the text to the TextView components.
+         *   Depending of the number of moods ( represent the number of day ), we can make
+         *   yesterday to one week***/
         InitWeek(tMoods);
     }
 
@@ -163,6 +177,10 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /*** This function is called when the user touch a commentary.
+     *   Each ImageButton had a tag. This tag is link to the array of commentary.
+     *   If the user touch the ImageButton with the tag 3, we call the commentary number 4 into the
+     *   array. If the commentary is not null, we launch a toast with the commentary inside.***/
     @Override
     public void onClick(View v){
 
