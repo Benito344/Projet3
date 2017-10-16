@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             case MotionEvent.ACTION_UP:
                 float y2 = event.getY();
                 float deltaX = y2 - y1;
+                /*** Use Math.abs if deltaX < 0 ***/
                 if (Math.abs(deltaX) > MIN_DISTANCE) {
                     if (y2 > y1) {
                         if (mNumColor < 5) {
@@ -149,14 +150,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     @Override
     protected void onPause(){
         super.onPause();
-        mComm  = mSaveMood.getString(PREF_KEY_COMMENTS,null);
         DataManager.SaveDataTemporary(this, mDayOfYear, mNumColor, mComm);
     }
 
-    /*** This method is call when the user start the application or just come back on it.
-     *   We checked the day of the year for know how long the user have not open the application
-     *   , if it upper at the last time, we saved finally the moods with DataManager,
-     *   else we loaded the temporary mood ***/
+    /*** This method is call when the user start the application or just come back on it. ***/
     @Override
     protected void onResume(){
         super.onResume();
@@ -164,11 +161,24 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         mCalendar = Calendar.getInstance(Locale.getDefault());
         mDayOfYear = mCalendar.get(Calendar.DAY_OF_YEAR);
-        int mDiff = mDayOfYear - mSaveMood.getInt(PREF_KEY_DAY, 999);
 
+        int mDiff = mDayOfYear - mSaveMood.getInt(PREF_KEY_DAY, 999);
 
         int mFirstLaunch = mSaveMood.getInt(PREF_KEY_FIRSTLAUNCH, 1);
 
+        /*** Here we call CheckedData for with two arguments :
+         *      - mDiff : the difference between the actual day and the last day where the user was connected
+         *      - mFirstLaunch : it's equal 1 if the user launch the application for the first time, else it's
+         *                       equal 0 ***/
+        CheckedData(mDiff, mFirstLaunch);
+
+    }
+
+    /***  Here we checked the day of the year for know how long the user have not open the application
+     *   , if it upper at the last time, we saved finally the moods with DataManager,
+     *   else we loaded the temporary mood.
+     *   If the user launch the application for the first time, we just saved the mood temporary ***/
+    public void CheckedData(int mDiff, int mFirstLaunch){
         if (mFirstLaunch != 1) {
 
             mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 999);
@@ -192,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 mSaveMood.edit().putInt(PREF_KEY_MOODS, mNumColor).apply();
                 mSaveMood.edit().putString(PREF_KEY_COMMENTS, null).apply();
                 mSaveMood.edit().putInt(PREF_KEY_DAY, mDayOfYear).apply();
+                mComm = null;
             } else {
 
                 Moods mMood = new Moods(mDayOfYear - 1, mNumColor, mComm);
@@ -201,6 +212,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
                 mNumColor = DataManager.savedMood(this);
                 mSaveMood.edit().putString(PREF_KEY_COMMENTS, null).apply();
+                mComm = null;
             }
 
             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
