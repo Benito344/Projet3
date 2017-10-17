@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     private float y1;
     static final int MIN_DISTANCE = 150;
-    private int mNumColor = 4, mDayOfYear;
+    private int mNumColor = 4, mDayOfYear, mRatioImgColor;
     private String mComm;
     private SharedPreferences mSaveMood;
     private static final String PREF_KEY_MOODS = "PREF_KEY_MOODS", PREF_KEY_COMMENTS = "PREF_KEY_COMMENTS",
@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         al.add(8, R.drawable.smiley_normal);
         al.add(9, R.drawable.smiley_happy);
         al.add(10, R.drawable.smiley_super_happy);
+
+        mRatioImgColor = (al.size() - 1) / 2;
 
         /*** Add listener on ImageButton mAddComm for open pop up with EditBox for input commentary ***/
         mAddComm.setOnClickListener(new View.OnClickListener() {
@@ -128,13 +130,13 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                         if (mNumColor < 5) {
                             mNumColor++;
                             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
-                            mSmiley.setImageResource(al.get(mNumColor + 5));
+                            mSmiley.setImageResource(al.get(mNumColor + mRatioImgColor));
                         }
                     } else {
                         if (mNumColor > 1) {
                             mNumColor--;
                             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
-                            mSmiley.setImageResource(al.get(mNumColor + 5));
+                            mSmiley.setImageResource(al.get(mNumColor + mRatioImgColor));
                         }
                     }
                 }
@@ -216,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
 
             mScreen.setBackgroundColor(ContextCompat.getColor(this, al.get(mNumColor)));
-            mSmiley.setImageResource(al.get(mNumColor + 5));
+            mSmiley.setImageResource(al.get(mNumColor + mRatioImgColor));
         }
         else {
             mSaveMood.edit().putInt(PREF_KEY_FIRSTLAUNCH, 0).apply();
