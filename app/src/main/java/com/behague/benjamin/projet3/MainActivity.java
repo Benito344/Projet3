@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
 
-    private ArrayList<Integer> al = new ArrayList<>();
+    public static ArrayList<Integer> al = new ArrayList<>();
     private View mScreen;
     private ImageView mSmiley;
 

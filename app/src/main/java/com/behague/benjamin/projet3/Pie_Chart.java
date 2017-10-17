@@ -48,28 +48,8 @@ public class Pie_Chart extends AppCompatActivity {
          *   type of moods is present ( e.getKey() ) and make the good color for each moods.
          *   The calcul , e.getValue() * 100 / mListLength, it for convert to percentage ***/
         for(Map.Entry<Integer, Integer> e : mStatsMoods.entrySet()){
-            switch (e.getKey()){
-                case 1 :
-                    colors.add(ContextCompat.getColor(this,R.color.faded_red));
-                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
-                    break;
-                case 2 :
-                    colors.add(ContextCompat.getColor(this,R.color.warm_grey));
-                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
-                    break;
-                case 3 :
-                    colors.add(ContextCompat.getColor(this,R.color.cornflower_blue_65));
-                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
-                    break;
-                case 4 :
-                    colors.add(ContextCompat.getColor(this,R.color.light_sage));
-                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
-                    break;
-                case 5 :
-                    colors.add(ContextCompat.getColor(this,R.color.banana_yellow));
-                    entries.add(new PieEntry((e.getValue()*100)/ mListLength));
-                    break;
-            }
+            colors.add(ContextCompat.getColor(this, MainActivity.al.get(e.getKey())));
+            entries.add(new PieEntry((e.getValue()*100)/mListLength));
         }
 
         /*** Init a PieDataSet for give the value to the PieChart ***/
