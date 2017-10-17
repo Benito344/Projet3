@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/light_sage"
     android:id="@+id/screen"
-    tools:context="com.behague.benjamin.projet3.MainActivity"
+    tools:context="com.behague.benjamin.projet3.controller.MainActivity"
     android:orientation="vertical"
     android:gravity="center">
 

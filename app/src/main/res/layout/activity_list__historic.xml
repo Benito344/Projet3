@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.behague.benjamin.projet3.List_Historic"
+    tools:context="com.behague.benjamin.projet3.controller.List_Historic"
     android:orientation="vertical"
     android:background="#bfbebe">
     <FrameLayout

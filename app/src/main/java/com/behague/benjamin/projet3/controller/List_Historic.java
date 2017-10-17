@@ -1,4 +1,4 @@
-package com.behague.benjamin.projet3;
+package com.behague.benjamin.projet3.controller;
 
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.behague.benjamin.projet3.R;
 import com.behague.benjamin.projet3.model.DataManager;
 import com.behague.benjamin.projet3.model.MoodList;
 

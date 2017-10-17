@@ -1,4 +1,4 @@
-package com.behague.benjamin.projet3;
+package com.behague.benjamin.projet3.controller;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.behague.benjamin.projet3.R;
 import com.behague.benjamin.projet3.model.DataManager;
 import com.behague.benjamin.projet3.model.MoodList;
 import com.behague.benjamin.projet3.model.Moods;
