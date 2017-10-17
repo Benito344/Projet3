@@ -13,33 +13,15 @@ import android.widget.Toast;
 import com.behague.benjamin.projet3.model.DataManager;
 import com.behague.benjamin.projet3.model.MoodList;
 
-import java.util.ArrayList;
-
 public class List_Historic extends AppCompatActivity implements View.OnClickListener {
 
-    private ArrayList<Integer> al = new ArrayList<>();
     private String tComms [] = {null, null, null, null, null, null, null};
-    private TextView mTv1, mTv2, mTv3, mTv4, mTv5, mTv6, mTv7;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list__historic);
-         /*** Add ressources to Arraylist ***/
-        al.add(0, R.color.faded_red);
-        al.add(1, R.color.warm_grey);
-        al.add(2, R.color.cornflower_blue_65);
-        al.add(3, R.color.light_sage);
-        al.add(4, R.color.banana_yellow);
-
-        /*** Declare TextView components ***/
-        mTv1 = (TextView) findViewById(R.id.activity_list_TV1);
-        mTv2 = (TextView) findViewById(R.id.activity_list_TV2);
-        mTv3 = (TextView) findViewById(R.id.activity_list_TV3);
-        mTv4 = (TextView) findViewById(R.id.activity_list_TV4);
-        mTv5 = (TextView) findViewById(R.id.activity_list_TV5);
-        mTv6 = (TextView) findViewById(R.id.activity_list_TV6);
-        mTv7 = (TextView) findViewById(R.id.activity_list_TV7);
 
         /*** Load all moods with the DataManager ***/
         DataManager.loadMoods(this);
@@ -63,8 +45,9 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         int mStatusBarHeight = (int) Math.ceil(25* getApplicationContext().getResources().getDisplayMetrics().density);
-        /*** mSize is divided by 7 because we had 7 days to display***/
-        int mSize = (metrics.heightPixels-mStatusBarHeight)/7;
+        /*** mSize is divided by mNumberOfDays = 7 because we had 7 days to display***/
+        int mNumberOfDays = 7;
+        int mSize = (metrics.heightPixels-mStatusBarHeight)/mNumberOfDays;
         int mWidth = (metrics.widthPixels);
 
         /*** This function is called for custom each Framelayout represent each day.
@@ -78,102 +61,57 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
     }
 
     public void InitMoodsStyle(int width, int size, int [] tMoods){
+
         FrameLayout mHistoricMoods;
         ImageView mImgBtn;
         double mRatio;
+        double tRatioWidth [] = {0.2, 0.4, 0.6, 0.8, 1};
+
         for (int i = 0 ; i < tMoods.length ; i++ ){
+
             int flID = getResources().getIdentifier("activity_list_FrameLayout"+i, "id", getPackageName());
             int ibID = getResources().getIdentifier("activity_list_Img"+i, "id", getPackageName());
+
             mHistoricMoods = (FrameLayout) findViewById(flID);
             mImgBtn = (ImageView) findViewById(ibID);
+
             mHistoricMoods.getLayoutParams().height = size;
-            switch (tMoods[i]){
-                case 1:
-                    mHistoricMoods.setVisibility(View.VISIBLE);
-                    mRatio = ((float) (width))*0.2;
-                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
-                    mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(0)));
-                    break;
-                case 2:
-                    mHistoricMoods.setVisibility(View.VISIBLE);
-                    mRatio = ((float) (width))*0.4;
-                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
-                    mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(1)));
-                    break;
-                case 3:
-                    mHistoricMoods.setVisibility(View.VISIBLE);
-                    mRatio = ((float) (width))*0.6;
-                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
-                    mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(2)));
-                    break;
-                case 4:
-                    mHistoricMoods.setVisibility(View.VISIBLE);
-                    mRatio = ((float) (width))*0.8;
-                    mHistoricMoods.getLayoutParams().width = (int) mRatio;
-                    mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(3)));
-                    break;
-                case 5:
-                    mHistoricMoods.setVisibility(View.VISIBLE);
-                    mHistoricMoods.getLayoutParams().width = width;
-                    mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, al.get(4)));
-                    break;
-                default:
-                    mHistoricMoods.setVisibility(View.INVISIBLE);
+
+            if(tMoods[i] == 0){
+                mHistoricMoods.setVisibility(View.INVISIBLE);
             }
+            else{
+                mHistoricMoods.setVisibility(View.VISIBLE);
+                mHistoricMoods.setBackgroundColor(ContextCompat.getColor(this, MainActivity.al.get(tMoods[i])));
+                mRatio = ((float) (width))*tRatioWidth[tMoods[i]-1];
+                mHistoricMoods.getLayoutParams().width = (int) mRatio;
+            }
+
             if (tComms[i] == null){
                 mImgBtn.setVisibility(View.INVISIBLE);
             }
+
             mHistoricMoods.setOnClickListener(this);
             mHistoricMoods.setTag(i);
         }
     }
 
     public void InitWeek(int [] tMoods){
-        switch(tMoods.length){
-            case 1 :
-                mTv1.setText(R.string.yesterday);
-                break;
-            case 2 :
-                mTv1.setText(R.string.two_days);
-                mTv2.setText(R.string.yesterday);
-                break;
-            case 3 :
-                mTv1.setText(R.string.three_days);
-                mTv2.setText(R.string.two_days);
-                mTv3.setText(R.string.yesterday);
-                break;
-            case 4 :
-                mTv1.setText(R.string.four_days);
-                mTv2.setText(R.string.three_days);
-                mTv3.setText(R.string.two_days);
-                mTv4.setText(R.string.yesterday);
-                break;
-            case 5 :
-                mTv1.setText(R.string.five_days);
-                mTv2.setText(R.string.four_days);
-                mTv3.setText(R.string.three_days);
-                mTv4.setText(R.string.two_days);
-                mTv5.setText(R.string.yesterday);
-                break;
-            case 6 :
-                mTv1.setText(R.string.six_days);
-                mTv2.setText(R.string.five_days);
-                mTv3.setText(R.string.four_days);
-                mTv4.setText(R.string.three_days);
-                mTv5.setText(R.string.two_days);
-                mTv6.setText(R.string.yesterday);
-                break;
-            case 7 :
-                mTv1.setText(R.string.one_week);
-                mTv2.setText(R.string.six_days);
-                mTv3.setText(R.string.five_days);
-                mTv4.setText(R.string.four_days);
-                mTv5.setText(R.string.three_days);
-                mTv6.setText(R.string.two_days);
-                mTv7.setText(R.string.yesterday);
-                break;
-            default:
-                break;
+        TextView mTV;
+        int mID = 0;
+        int tDays[] =  {R.string.yesterday,
+                        R.string.two_days,
+                        R.string.three_days,
+                        R.string.four_days,
+                        R.string.five_days,
+                        R.string.six_days,
+                        R.string.one_week};
+
+        for(int i = tMoods.length ; i > 0 ; i--){
+            int tvID = getResources().getIdentifier("activity_list_TV"+mID,"id", getPackageName());
+            mTV = (TextView) findViewById(tvID);
+            mTV.setText(tDays[i-1]);
+            mID++;
         }
     }
 
