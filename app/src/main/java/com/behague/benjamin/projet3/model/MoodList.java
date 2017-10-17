@@ -2,7 +2,6 @@ package com.behague.benjamin.projet3.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,24 +10,17 @@ import java.util.Map;
  * Created by Benjamin BEHAGUE on 10/10/2017.
  */
 
+/*** These is class is for working on list of Moods ***/
 public class MoodList implements Serializable {
 
     static List<Moods> mMoodListData = new ArrayList<>();
 
+    /*** These is a setter for add mood object to te ArraysList***/
     public static void addMood(Moods mood) {
         mMoodListData.add(mood);
     }
 
-    public String toString() {
-        String str = "";
-        for (Moods m : mMoodListData) {
-            str += m.getId() + "\n" +
-                    m.getCommentary() + "\n" +
-                    m.getMood() + "\n";
-        }
-        return str;
-    }
-
+    /*** These is a getter for retrieve the last 7 moods ***/
     public static int[] getMoodsHistoric() {
         int sizeOfMoodList = mMoodListData.size();
         int i = 0;
@@ -57,6 +49,7 @@ public class MoodList implements Serializable {
         }
     }
 
+     /*** These is a getter for retrieve the last 7 commentary ***/
     public static String[] getMoodsComms() {
         String tComms[] = {null, null, null, null, null, null, null};
         List<Moods> tail = mMoodListData.subList(Math.max(mMoodListData.size() - 7, 0), mMoodListData.size());
@@ -72,6 +65,7 @@ public class MoodList implements Serializable {
         return tComms;
     }
 
+    /*** These is a getter for give each number of mood present in the list***/
     public static Map<Integer, Integer> getStatsMoods() {
 
         Map<Integer, Integer> mCountRepetition = new HashMap<>();
@@ -81,7 +75,6 @@ public class MoodList implements Serializable {
             tMoods[i] = t.getMood();
             i++;
         }
-        Arrays.sort(tMoods);
 
         for(int j=0;j<tMoods.length;j++){
             if(mCountRepetition.containsKey(tMoods[j])){
@@ -93,6 +86,7 @@ public class MoodList implements Serializable {
         return mCountRepetition;
     }
 
+    /*** The is a getter for retrieve the size of the MoodList ***/
     public static int getLengthMoodList(){
         return mMoodListData.size();
     }
