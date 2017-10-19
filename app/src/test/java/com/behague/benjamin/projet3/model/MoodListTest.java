@@ -34,39 +34,35 @@ public class MoodListTest {
         mood1 = new Moods(185, 4, "test");
         mood2 = new Moods(186, 2, null);
         MoodsListTest = new ArrayList<>();
-       /*doNothing().when(mockedListMoods).addMood(mood1);*/
-       /* when(mockedListMoods.getMoodsHistoric()).thenReturn(tMoods);*/
+        MoodsListTest.add(mood1);
+        MoodsListTest.add(mood2);
+
+
 
     }
 
     @Test
     public void addMoodTest() throws Exception {
-
-        MoodsListTest.add(mood1);
-        MoodsListTest.add(mood2);
         assertArrayEquals(MoodsListTest.toArray(), new Moods []{mood1, mood2});
     }
 
     @Test
     public void getMoodsHistoricTest() throws Exception {
         List<Integer> tNumMoods = new ArrayList<>();
-        MoodsListTest.add(mood1);
-        MoodsListTest.add(mood2);
         for (Moods t : MoodsListTest){
             tNumMoods.add(t.getMood());
         }
-        assertEquals(tNumMoods.toArray(), new int [] {4,2});
+        int [] excpectedValue = {4,2};
+        assertEquals(excpectedValue, tNumMoods.toArray());
     }
 
     @Test
     public void getMoodsCommsTest() throws Exception {
-        List<String> tNumMoods = new ArrayList<>();
-        MoodsListTest.add(mood1);
-        MoodsListTest.add(mood2);
+        List<String> tComsMoods = new ArrayList<>();
         for (Moods t : MoodsListTest){
-            tNumMoods.add(t.getCommentary());
+            tComsMoods.add(t.getCommentary());
         }
-        assertArrayEquals(tNumMoods.toArray(), new String [] {"test",null});
+        assertArrayEquals( new String [] {"test",null}, tComsMoods.toArray());
     }
 
     @Test
@@ -76,7 +72,7 @@ public class MoodListTest {
 
     @Test
     public void getLengthMoodListTest() throws Exception {
-
+        assertEquals(2 ,MoodsListTest.size());
     }
 
 }

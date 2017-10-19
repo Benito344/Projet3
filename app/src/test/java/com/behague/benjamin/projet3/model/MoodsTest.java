@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 /**
@@ -19,7 +20,6 @@ public class MoodsTest {
         mockedMoods = Mockito.mock(Moods.class);
         mood1 = new Moods(185, 4, "test");
 
-        when(mockedMoods.getMood()).thenReturn(4);
         when(mockedMoods.getCommentary()).thenReturn("test");
 
     }
