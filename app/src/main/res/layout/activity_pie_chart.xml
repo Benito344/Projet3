@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.behague.benjamin.projet3.controller.Pie_Chart">
+    tools:context="com.behague.benjamin.projet3.controller.Pie_Chart"
+    android:id="@+id/activity_piechart_main">
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/activity_pie_chart"

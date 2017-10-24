@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.behague.benjamin.projet3.controller.List_Historic"
     android:orientation="vertical"
-    android:background="#bfbebe">
+    android:background="#bfbebe"
+    android:id="@+id/activity_list_mainlayout">
     <FrameLayout
         android:visibility="invisible"
         android:layout_width="match_parent"

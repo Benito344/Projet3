@@ -21,6 +21,7 @@ public class MoodsTest {
         mood1 = new Moods(185, 4, "test");
 
         when(mockedMoods.getCommentary()).thenReturn("test");
+        when(mockedMoods.getMood()).thenReturn(4);
 
     }
 
