@@ -76,11 +76,11 @@ public class MoodList implements Serializable {
             i++;
         }
 
-        for(int j=0;j<tMoods.length;j++){
-            if(mCountRepetition.containsKey(tMoods[j])){
-                mCountRepetition.put(tMoods[j], mCountRepetition.get(tMoods[j])+1 );
+        for (int tab : tMoods){
+            if(mCountRepetition.containsKey(tab)){
+                mCountRepetition.put(tab, mCountRepetition.get(tab)+1 );
             }else{
-                mCountRepetition.put(tMoods[j], 1);
+                mCountRepetition.put(tab, 1);
             }
         }
         return mCountRepetition;
