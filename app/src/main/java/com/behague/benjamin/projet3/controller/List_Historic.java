@@ -24,40 +24,40 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list__historic);
 
-        /*** Load all moods with the DataManager ***/
+        /* Load all moods with the DataManager */
         DataManager.loadMoods(this);
 
-        /*** Add commentarys to array ***/
+        /* Add commentarys to array */
         int j = 0;
         for (String c : MoodList.getMoodsComms()){
             tComms[j] = c;
             j++;
         }
 
-        /*** Init a array of Moods***/
+        /* Init a array of Moods*/
         int tMoods [] =  MoodList.getMoodsHistoric();
 
-        /*** Here it's for get the height and the width of the screen.
+        /* Here it's for get the height and the width of the screen.
          *   For the status bar height we used Math.ceil, it return the closest upper rounding.
          *   25 is the height for a MDPI screen, so for retrieve the value of an XXHDPI or LDPI or other,
          *   just multiply it by the density. And after this, get the total height of the screen, minus
-         *   the status bar***/
+         *   the status bar */
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         int mStatusBarHeight = (int) Math.ceil(25* getApplicationContext().getResources().getDisplayMetrics().density);
-        /*** mSize is divided by mNumberOfDays = 7 because we had 7 days to display***/
+        /* mSize is divided by mNumberOfDays = 7 because we had 7 days to display */
         int mNumberOfDays = 7;
         int mSize = (metrics.heightPixels-mStatusBarHeight)/mNumberOfDays;
         int mWidth = (metrics.widthPixels);
 
-        /*** This function is called for custom each Framelayout represent each day.
-         *   We can custom the colors, the width, the height and visible or not ***/
+        /* This function is called for custom each Framelayout represent each day.
+         *   We can custom the colors, the width, the height and visible or not */
         InitMoodsStyle(mWidth , mSize, tMoods);
 
-        /*** This function is called for add the text to the TextView components.
+        /* This function is called for add the text to the TextView components.
          *   Depending of the number of moods ( represent the number of day ), we can make
-         *   yesterday to one week***/
+         *   yesterday to one week */
         InitWeek(tMoods);
     }
 
@@ -116,10 +116,10 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    /*** This function is called when the user touch a commentary.
+    /* This function is called when the user touch a commentary.
      *   Each ImageButton had a tag. This tag is link to the array of commentary.
      *   If the user touch the ImageButton with the tag 3, we call the commentary number 4 into the
-     *   array. If the commentary is not null, we launch a toast with the commentary inside.***/
+     *   array. If the commentary is not null, we launch a toast with the commentary inside */
     @Override
     public void onClick(View v){
 

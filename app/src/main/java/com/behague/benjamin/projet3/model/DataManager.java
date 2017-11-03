@@ -27,7 +27,7 @@ public class DataManager implements Serializable{
 
     /*** These function is for saved the temporary data(used in MainActivity in onPause() ***/
     public static void SaveDataTemporary(Context context, int mDayOfYear, int mNumColor, String mComment){
-        mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
+        mSaveMood = context.getSharedPreferences("Moods",Context.MODE_PRIVATE);
         mSaveMood.edit().putInt(PREF_KEY_DAY, mDayOfYear).apply();
         mSaveMood.edit().putInt(PREF_KEY_MOODS, mNumColor).apply();
         mSaveMood.edit().putString(PREF_KEY_COMMENTS, mComment).apply();
@@ -36,7 +36,7 @@ public class DataManager implements Serializable{
     /*** This function is for loaded the temporary data (used in MainActivity in OnResume()) ***/
     public static int LoadMoodTemporary(Context context){
         int mNumColor;
-        mSaveMood = context.getSharedPreferences("Moods",context.MODE_PRIVATE);
+        mSaveMood = context.getSharedPreferences("Moods",Context.MODE_PRIVATE);
         mNumColor = mSaveMood.getInt(PREF_KEY_MOODS, 4);
         return mNumColor ;
     }

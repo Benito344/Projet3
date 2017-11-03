@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*** Declare all components ***/
+        /* Declare all components */
         ImageButton mAddComm, mHistoric;
 
         mScreen = findViewById(R.id.screen);
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 
-        /*** Add Ressources to the ArrayList ***/
+        /* Add Ressources to the ArrayList */
         al.add(0, null);
         al.add(1, R.color.faded_red);
         al.add(2, R.color.warm_grey);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         mRatioImgColor = (al.size() - 1) / 2;
 
-        /*** Add listener on ImageButton mAddComm for open pop up with EditBox for input commentary ***/
+        /* Add listener on ImageButton mAddComm for open pop up with EditBox for input commentary */
         mAddComm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         });
 
-        /*** Add listener on ImageButton mHistoric for open List_Hitoric activity ***/
+        /* Add listener on ImageButton mHistoric for open List_Hitoric activity */
         mHistoric.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         });
 
-        /*** Add listener on ImageView mSmiley for open Pie_Chart activity (Only with long touch) ***/
+        /* Add listener on ImageView mSmiley for open Pie_Chart activity (Only with long touch) */
         mSmiley.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -113,9 +113,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         });
     }
 
-    /*** This method is for detected swipe up and down, when the user touch the screen
+    /* This method is for detected swipe up and down, when the user touch the screen
      *   this method is call and get the point on Y when user touch and release screen
-     *   with some calcul we can detected an up or down swipe and switch Smiley and colors Background ***/
+     *   with some calcul we can detected an up or down swipe and switch Smiley and colors Background */
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             case MotionEvent.ACTION_UP:
                 float y2 = event.getY();
                 float deltaX = y2 - y1;
-                /*** Use Math.abs if deltaX < 0 ***/
+                /* Use Math.abs if deltaX < 0 */
                 if (Math.abs(deltaX) > MIN_DISTANCE) {
                     if (y2 > y1) {
                         if (mNumColor < 5) {
@@ -148,15 +148,15 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         return super.onTouchEvent(event);
     }
 
-    /*** This method is call when an other activity come in front or the user destroy app, when it is true
-     *   we saved temporary the mood ans commentary in DataManager ***/
+    /* This method is call when an other activity come in front or the user destroy app, when it is true
+     *   we saved temporary the mood ans commentary in DataManager */
     @Override
     protected void onPause(){
         super.onPause();
         DataManager.SaveDataTemporary(this, mDayOfYear, mNumColor, mComm);
     }
 
-    /*** This method is call when the user start the application or just come back on it. ***/
+    /* This method is call when the user start the application or just come back on it. */
     @Override
     protected void onResume(){
         super.onResume();
@@ -169,18 +169,18 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         int mFirstLaunch = mSaveMood.getInt(PREF_KEY_FIRSTLAUNCH, 1);
 
-        /*** Here we call CheckedData for with two arguments :
+        /* Here we call CheckedData for with two arguments :
          *      - mDiff : the difference between the actual day and the last day where the user was connected
          *      - mFirstLaunch : it's equal 1 if the user launch the application for the first time, else it's
-         *                       equal 0 ***/
+         *                       equal 0 **/
         CheckedData(mDiff, mFirstLaunch);
 
     }
 
-    /***  Here we checked the day of the year for know how long the user have not open the application
+    /*  Here we checked the day of the year for know how long the user have not open the application
      *   , if it upper at the last time, we saved finally the moods with DataManager,
      *   else we loaded the temporary mood.
-     *   If the user launch the application for the first time, we just saved the mood temporary ***/
+     *   If the user launch the application for the first time, we just saved the mood temporary */
     public void CheckedData(int mDiff, int mFirstLaunch){
         if (mFirstLaunch != 1) {
 
