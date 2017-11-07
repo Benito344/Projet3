@@ -73,12 +73,6 @@ public class DataManagerTest implements Serializable {
 
         doReturn(sharedPreference).when(context).getSharedPreferences(anyString(), anyInt());
 
-        //when(dataManager.savedMood(context)).thenReturn(eq(4));
-
-        //doReturn(editor).when(sharedPreference).edit();
-
-        //doReturn(editor).when(editor).putString(anyString(),anyString());
-
         dataManager = new DataManager();
     }
     @AfterClass
@@ -124,7 +118,7 @@ public class DataManagerTest implements Serializable {
         }
     }
 
-    @Test
+  /*  @Test
     public void loadMoods() throws Exception {
        try {
             when(context.openFileInput(anyString())).thenReturn(fis);
@@ -136,6 +130,6 @@ public class DataManagerTest implements Serializable {
             e.printStackTrace();
             fail();
         }
-    }
+    }*/
 
 }
