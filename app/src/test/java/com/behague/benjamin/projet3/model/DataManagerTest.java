@@ -51,12 +51,6 @@ public class DataManagerTest implements Serializable {
     SharedPreferences.Editor editor;
 
     @Mock
-    FileInputStream fis;
-
-    @Mock
-    ObjectInputStream ois;
-
-    @Mock
     FileOutputStream fos;
 
     @Mock
@@ -117,19 +111,4 @@ public class DataManagerTest implements Serializable {
             fail();
         }
     }
-
-  /*  @Test
-    public void loadMoods() throws Exception {
-       try {
-            when(context.openFileInput(anyString())).thenReturn(fis);
-            DataManager.loadMoods(context);
-            verify(context, times(1)).openFileInput(anyString());
-            verify(fis, atLeastOnce()).read(any(byte[].class));
-            fis.close();
-        } catch (Exception e){
-            e.printStackTrace();
-            fail();
-        }
-    }*/
-
 }
