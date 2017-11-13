@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         mScreen = findViewById(R.id.screen);
 
-        mSmiley = (ImageView) findViewById(R.id.smiley);
+        mSmiley = findViewById(R.id.smiley);
 
-        mAddComm = (ImageButton) findViewById(R.id.add_comm);
-        mHistoric = (ImageButton) findViewById(R.id.history);
+        mAddComm = findViewById(R.id.add_comm);
+        mHistoric = findViewById(R.id.history);
 
         mSaveMood = getSharedPreferences("Moods", MODE_PRIVATE);
 

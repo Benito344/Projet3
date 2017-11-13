@@ -73,8 +73,8 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
             int flID = getResources().getIdentifier("activity_list_FrameLayout"+i, "id", getPackageName());
             int ibID = getResources().getIdentifier("activity_list_Img"+i, "id", getPackageName());
 
-            mHistoricMoods = (FrameLayout) findViewById(flID);
-            mImgBtn = (ImageView) findViewById(ibID);
+            mHistoricMoods = findViewById(flID);
+            mImgBtn = findViewById(ibID);
 
             mHistoricMoods.getLayoutParams().height = size;
 
@@ -110,7 +110,7 @@ public class List_Historic extends AppCompatActivity implements View.OnClickList
 
         for(int i = tMoods.length ; i > 0 ; i--){
             int tvID = getResources().getIdentifier("activity_list_TV"+mID,"id", getPackageName());
-            mTV = (TextView) findViewById(tvID);
+            mTV = findViewById(tvID);
             mTV.setText(tDays[i-1]);
             mID++;
         }

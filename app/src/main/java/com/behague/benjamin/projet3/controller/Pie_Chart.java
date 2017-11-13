@@ -27,7 +27,7 @@ public class Pie_Chart extends AppCompatActivity {
         setContentView(R.layout.activity_pie_chart);
 
         /* Track the Pie Chart with her id. */
-        PieChart mPieChart = (PieChart) findViewById(R.id.activity_pie_chart);
+        PieChart mPieChart = findViewById(R.id.activity_pie_chart);
 
         /* Use DataManager for load data. */
         DataManager.loadMoods(this);
