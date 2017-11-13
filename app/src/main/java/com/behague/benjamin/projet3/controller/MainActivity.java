@@ -124,9 +124,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 break;
             case MotionEvent.ACTION_UP:
                 float y2 = event.getY();
-                float deltaX = y2 - y1;
+                float deltaY = y2 - y1;
                 /* Use Math.abs if deltaX < 0 */
-                if (Math.abs(deltaX) > MIN_DISTANCE) {
+                if (Math.abs(deltaY) > MIN_DISTANCE) {
                     if (y2 > y1) {
                         if (mNumColor < 5) {
                             mNumColor++;
